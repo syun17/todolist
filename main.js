@@ -1,41 +1,31 @@
-const table = document.querySelector('table');
-const todo = document.getElementById('todo');
-const deadline = document.querySelector('input[type="date"]');
-const submit = document.getElementById('submit');
+const taskValue = document.getElementsByClassName('task_value')[0];
+const taskSubmit = document.getElementsByClassName('task_submit')[0];
+const taskList = document.getElementsByClassName('task_list')[0];
 
-submit.addEventListener('click', () =>{
-    const item = {};
-    item.todo = todo.value;
-    item.deadline = deadline.value;
-    item.done = false; 
-    console.log(item);
-    todo.value ='';
-    deadline.value = '';
-    const tr = document.createElement('tr'); 
+const addTasks = (task) => {
 
-for (const prop in item) {
-  const td = document.createElement('td');
-  td.textContent = item[prop];
-  tr.appendChild(td);
-}
+  const listItem = document.createElement('li');
+  const showItem = taskList.appendChild(listItem);
+  showItem.innerHTML = task;
 
-table.append(tr);
+  const deleteButton = document.createElement('button');
+  deleteButton.innerHTML = 'Delete';
+  listItem.appendChild(deleteButton);
+
+  deleteButton.addEventListener('click', evt => {
+    evt.preventDefault();
+    deleteTasks(deleteButton);
+  });
+};
+
+const deleteTasks = (deleteButton) => {
+  const chosenTask = deleteButton.closest('li');
+  taskList.removeChild(chosenTask);
+};
+
+taskSubmit.addEventListener('click', evt => {
+  evt.preventDefault();
+  const task = taskValue.value;
+  addTasks(task);
+  taskValue.value = '';
 });
-
-for (const prop in item) {
-  const td = document.createElement('td');
-  td.textContent = item[prop];
-  tr.appendChild(td);
-}
-for (const prop in item) {
-  const td = document.createElement('td');
-  if (prop == 'done') {
-     const checkbox = document.createElement('input'); 
-     checkbox.type = 'checkbox'; 
-     checkbox.checked = item[prop]; 
-     td.appendChild(checkbox);
-  } else {
-    td.textContent = item[prop];
-  }
-  tr.appendChild(td);
-}

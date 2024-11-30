@@ -4,21 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <script src="./main.js"></script>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div id="input">
-        <label>TODO: <input id="todo"></label><br>
-        <label>期日: <input type="date"></label><br>
-        <button id="submit">登録</button>
-      </div>
-      <table>
-        <tr>
-          <td>item.todo</td>
-          <td>item.priority</td>
-          <td>item.deadline</td>
-          <td>item.done</td>
-        </tr>
-      </table>
+  <h1>TODO-List</h1>
+  <form>
+    <input class="task_value" type="text" />
+    <button class="task_submit" type="button">Add Task</button>
+  </form>
+  <div id="table">
+    <h2>Current Tasks</h2>
+    <ul class="task_list"></ul>
+    <script src="main.js"></script>
+  </div>
 </body>
 </html>
